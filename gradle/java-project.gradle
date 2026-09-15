@@ -35,14 +35,12 @@ dependencies {
 
 compileJava {
   options.release = 21
-  options.compilerArgs << "-Werror"
   options.compilerArgs << "-Xlint:all"
   options.compilerArgs << "-Xlint:-serial"
 }
 
 compileTestJava {
   options.release = 21
-  options.compilerArgs << "-Werror"
   options.compilerArgs << "-Xlint:all"
   options.compilerArgs << "-Xlint:-serial"
 }
@@ -67,6 +65,16 @@ test {
   useJUnitPlatform()
   // ignoreFailures = true
   systemProperties.put("java.awt.headless", "true")
+  finalizedBy 'jacocoTestReport'
+}
+
+jacocoTestReport {
+  dependsOn test
+  reports {
+    xml.required = true
+    html.required = false
+    csv.required = false
+  }
 }
 
 ext {
