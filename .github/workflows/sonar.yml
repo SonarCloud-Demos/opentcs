@@ -68,7 +68,8 @@ jobs:
 
       - name: Surface test outcome
         if: always()
-        run: echo "### Gradle test outcome: \`${{ steps.tests.outcome }}\`" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "### Gradle test outcome: \`${{ steps.tests.outcome }}\`" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Cleanup Gradle cache
         if: always()
